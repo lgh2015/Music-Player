@@ -6,8 +6,11 @@
 //  Copyright © 2015年 LiGuoHao. All rights reserved.
 //
 
-#import "AppDelegate.h"
 
+//指定根视图->设置背景视图的模糊效果->想显示表视图的数据->封装musicmanager(处理数据,封装功能要全面,封装要彻底,封装的功能要明确)->对数据处理完毕后要赋值给model类,所以仍然需要接着封装model(注意对特殊数据的处理)->根据需求判断是否需要自定义cell
+
+#import "AppDelegate.h"
+#import "MusicListTableViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -17,6 +20,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    //1.初始化window
+    self.window=[[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    //2.将这个window显示出来
+    [self.window makeKeyAndVisible];
+    //3.创建音乐播放器列表控制器对象
+    MusicListTableViewController *musicVC=[[MusicListTableViewController alloc]init];
+    //4.创建一个导航控制器
+    UINavigationController *navi=[[UINavigationController alloc]initWithRootViewController:musicVC];
+    //5.指定window的根视图
+    self.window.rootViewController=navi;
+    //6.设置导航控制器的样式为黑色样式
+    [[UINavigationBar appearance]setBarStyle:UIBarStyleBlackTranslucent];
     return YES;
 }
 
